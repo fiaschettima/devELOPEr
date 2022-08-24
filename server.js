@@ -27,7 +27,7 @@ var sessionStore = new MongoDBStore({
     collection: 'mySessions'
 });
 
-store.on('error', function (error) {
+sessionStore.on('error', function (error) {
     console.log(error);
 });
 
