@@ -19,7 +19,7 @@ import { PubNubProvider } from "pubnub-react";
 import { Chat, MessageList, MessageInput, TypingIndicator, ChannelList, MemberList } from "@pubnub/react-chat-components";
 // import { Picker } from "emoji-mart";
 // import data from '@emoji-mart/data'
-import Auth from "./utils/auth";
+
 import {
   ApolloClient,
   InMemoryCache,
