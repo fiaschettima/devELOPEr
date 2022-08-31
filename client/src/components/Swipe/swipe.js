@@ -4,6 +4,10 @@ import "./swipe.css";
 import { AiFillHeart } from 'react-icons/ai';
 import { MdCancel } from 'react-icons/md'; 
 import { FaUndo } from 'react-icons/fa';
+import InterestButton from "../InterestButton/InterestButton";
+import data from "../../data/interestsJson";
+import { Row } from 'react-bootstrap';
+
 const db = [
     {
       name: 'Richard Hendricks',
@@ -30,7 +34,7 @@ const db = [
   function Swiper () {
     const [currentIndex, setCurrentIndex] = useState(db.length - 1)
     const [lastDirection, setLastDirection] = useState()
-    // used for outOfFrame closure
+
     const currentIndexRef = useRef(currentIndex)
   
     const childRefs = useMemo(
@@ -50,19 +54,16 @@ const db = [
   
     const canSwipe = currentIndex >= 0
   
-    // set last direction and decrease current index
+
     const swiped = (direction, nameToDelete, index) => {
       setLastDirection(direction)
       updateCurrentIndex(index - 1)
     }
   
     const outOfFrame = (name, idx) => {
-      console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current)
-      // handle the case in which go back is pressed before card goes outOfFrame
+  
       currentIndexRef.current >= idx && childRefs[idx].current.restoreCard()
-      // TODO: when quickly swipe and restore multiple times the same card,
-      // it happens multiple outOfFrame events are queued and the card disappear
-      // during latest swipes. Only the last outOfFrame event should be considered valid
+
     }
   
     const swipe = async (dir) => {
@@ -80,38 +81,44 @@ const db = [
     }
   
     return (
-      <div>
-        <link
-          href='https://fonts.googleapis.com/css?family=Damion&display=swap'
-          rel='stylesheet'
-        />
-        <link
-          href='https://fonts.googleapis.com/css?family=Alatsi&display=swap'
-          rel='stylesheet'
-        />
+      <Row className='grid_swipe'>
         <h1>React Tinder Card</h1>
+      <div className='cards_section'>
+      
         <div className='cardContainer'>
-          {db.map((character, index) => (
+          {db.map((user, index) => (
             <TinderCard
               ref={childRefs[index]}
               className='swipe'
-              key={character.name}
-              onSwipe={(dir) => swiped(dir, character.name, index)}
-              onCardLeftScreen={() => outOfFrame(character.name, index)}
+              key={user.name}
+              onSwipe={(dir) => swiped(dir, user.name, index)}
+              onCardLeftScreen={() => outOfFrame(user.name, index)}
             >
-              <div
-                style={{ backgroundImage: 'url(' + character.url + ')' }}
-                className='card'
-              >
-                <h3>{character.name}</h3>
+                <div className="card">
+                <img src={user.url} alt={user.name} className="userImage"></img>
+                <h3>{user.name}, {user.age}</h3>
+                <hr />
+                <div className="interest_section">
+                  {" "}
+                  {data.slice(0, 4).map((interest) => {
+                    return (
+                      <InterestButton
+                        disabled="true"
+                        icon={interest.icon}
+                        interest={interest.interest}
+                      />
+                    );
+                  })}
+                </div>
+                <hr />
               </div>
             </TinderCard>
           ))}
         </div>
         <div className='buttons'>
-          <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('left')}><MdCancel/></button>
-          <button style={{ backgroundColor: !canGoBack && '#c3c4d3' }} onClick={() => goBack()}><FaUndo/></button>
-          <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('right')}><AiFillHeart/></button>
+          <button onClick={() => swipe('left')}><MdCancel/></button>
+          <button onClick={() => goBack()}><FaUndo/></button>
+          <button onClick={() => swipe('right')}><AiFillHeart/></button>
         </div>
         {lastDirection ? (
           <h2 key={lastDirection} className='infoText'>
@@ -123,6 +130,7 @@ const db = [
           </h2>
         )}
       </div>
+      </Row>
     )
   }
   
