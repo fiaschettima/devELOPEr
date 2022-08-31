@@ -109,9 +109,9 @@ const db = [
           ))}
         </div>
         <div className='buttons'>
-          <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('left')}><AiFillHeart/></button>
+          <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('left')}><MdCancel/></button>
           <button style={{ backgroundColor: !canGoBack && '#c3c4d3' }} onClick={() => goBack()}><FaUndo/></button>
-          <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('right')}><MdCancel/></button>
+          <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('right')}><AiFillHeart/></button>
         </div>
         {lastDirection ? (
           <h2 key={lastDirection} className='infoText'>
