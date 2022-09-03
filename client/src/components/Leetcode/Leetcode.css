@@ -11,12 +11,12 @@
   /* position: relative; */
   width: 95%;
 }
-.buttons {
+.buttons_lc {
   display: flex;
   align-items: right;
   justify-content: right;
 }
-.buttons Button {
+.buttons_lc Button {
   margin-left: 10px;
 }
 .heading {

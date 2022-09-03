@@ -197,7 +197,7 @@ const Leetcode = () => {
               {/* <Sonnet /> */}
             </Tab>
           </Tabs>
-          <div className="buttons">
+          <div className="buttons_lc">
             <Button
               type="submit"
               className="run_btn"

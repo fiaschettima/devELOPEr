@@ -6,6 +6,7 @@ import classes from "./Header.module.css";
 const Header = (props) => {
   const logoutHandler = (e) => {
     e.preventDefault();
+    console.log(Auth);
     Auth.logout();
     window.location.replace("/");
   };
