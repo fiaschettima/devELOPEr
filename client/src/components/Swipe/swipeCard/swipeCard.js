@@ -40,7 +40,6 @@ const SwipeCard = ({ profiles, currentUser }) => {
   const canSwipe = currentIndex >= 0;
 
   const swiped = async (direction, user, index) => {
-    console.log("USER ID", user._id);
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
     if (direction === "left") {
@@ -63,27 +62,15 @@ const SwipeCard = ({ profiles, currentUser }) => {
   };
 
   const swipe = async (dir, user) => {
-    // console.log("USER IN SWIPE", user);
-    // console.log(childRefs[currentIndex].current);
+    
     if (canSwipe && currentIndex < users.length) {
-      await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
-      //   console.log(dir);
-      //   if (auth.loggedIn) {
-      //     // if (dir === "left") {
-      //     //   console.log(dir);
-      //     //   return;
-      //     // }
-      //     if (dir === "right") {
-      //       // makeConnection({
-      //       //   variables:
-      //       // })
-      //       console.log(dir);
-      //     }
-      //   }
+      await childRefs[currentIndex].current.swipe(dir); 
     }
   };
 
   // increase current index and show card
+  // This goBack function could be for future Developtment
+  // Giving the option to undo a swipe 'change your mind'
   const goBack = async () => {
     console.log("back button");
     if (!canGoBack) return;
@@ -168,56 +155,3 @@ const SwipeCard = ({ profiles, currentUser }) => {
 };
 
 export default SwipeCard;
-/**
- * {/* <div className="card">
-                <img
-                  src={user.profile.images[0]}
-                  alt={user.profile.firstName}
-                  className="userImage"
-                ></img>
-<div class="photo-text">
-                    <div class="photo-name-and-age">
-                      <h2>Lorem</h2>
-                      <h2>21</h2>
-                    </div>
-                    <div class="photo-bio">
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Dolore, veritatis nobis esse perspiciatis delectus natus
-                        facilis. Aut officiis, quas repudiandae ea numquam, sint
-                        omnis provident nostrum voluptates cupiditate, similique
-                        ratione.
-                      </p>
-                    </div>
-                  </div>
-                <span
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "baseline",
-                  }}
-                >
-                  <h3>
-                    {user.profile.firstName} {user.profile.lastName},{" "}
-                    {user.profile.age}
-                  </h3>
-                  <h5>{user.profile.location}</h5>
-                </span>
-                <hr />
-                <div className="interest_section">
-                  {" "}
-                  <h4 style={{ color: "black" }}>Interests:</h4>
-                  {user.profile.interest.map((interest, index) => {
-                    return (
-                      <InterestButton
-                        disabled="true"
-                        interest={interest}
-                        key={index}
-                      />
-                    );
-                  })}
-                </div>
-
-                <hr />
-                <span style={{ fontSize: "20px" }}>{user.profile.aboutme}</span>
-              </div> */
