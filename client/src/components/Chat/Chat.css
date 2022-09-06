@@ -187,7 +187,14 @@ h4 {
 } */
 
 .pn-msg-list-scroller {
-  color: black
+  display: flex;
+  flex-direction: column;
+  /* height: 100%; */
+  overflow: auto;
+  overscroll-behavior-y: contain;
+  position: relative;
+  transform: translateZ(0);
+  width: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -195,7 +202,7 @@ h4 {
 }
 
 .pn-msg-input_wrapper {
-  color: white
+  color: rgba(255, 255, 255, 0)
 }
 
 ::placeholder {
