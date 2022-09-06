@@ -116,6 +116,7 @@ h4 {
 .form {
   margin: 1rem 0.5rem;
 }
+
 input::placeholder {
   color: white;
 }

@@ -199,6 +199,7 @@ const SignUp = () => {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
+                    color: "white",
                   }}
                   className="input"
                   id="dropdown-button-dark-example1"
